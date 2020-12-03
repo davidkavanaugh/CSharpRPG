@@ -1,7 +1,7 @@
 namespace TerminalRPG
 {
     using System;
-    class Warrior : Hero
+    class Warrior : Hero, IHero
     {
         private int Strength { get; }
         private int Wisdom { get; }
