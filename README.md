@@ -1,5 +1,5 @@
 # CSharpRPG
-## Type ```dotnet run``` and play along
+### Type ```dotnet run``` and play along
 
 CSharpRPG is a simply game to help me learn C#. Specifically, I wanted to focus on inheritance, interfaces, and singly-linked-lists.
 
