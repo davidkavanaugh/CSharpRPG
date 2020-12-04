@@ -48,11 +48,10 @@ namespace TerminalRPG
                         Console.WriteLine($"{count}.) {enemy.Name} -- {enemy.Hp}HP");
                         count++;
                     }
-                    int target = Int32.Parse((Console.ReadLine()));
                     try
                     {
-                        Villian enemy = villians.GetVillianBySelectionNumber(target);
-                        Hero.Attack(player, enemy);
+                        Villian enemy = villians.GetVillianBySelectionNumber(Int32.Parse((Console.ReadLine())) - 1);
+                        player.Attack(enemy);
                         loops++;
 
                     }

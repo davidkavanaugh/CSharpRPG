@@ -1,7 +1,7 @@
 namespace TerminalRPG
 {
     using System;
-    abstract class Hero
+    abstract class Hero : IHero
     {
         public string Name { get; set; }
         public int Hp { get; set; }
@@ -17,21 +17,21 @@ namespace TerminalRPG
             Strength = 3;
             Wisdom = 3;
         }
-        public static void Attack(Hero player, Villian target)
+        public void Attack(Villian target)
         {
             int amt = 0;
-            if (player.GetType().Name == "Wizard")
+            if (this.GetType().Name == "Wizard")
             {
-                amt = player.Lvl * player.Wisdom;
+                amt = this.Lvl * this.Wisdom;
 
             }
-            if (player.GetType().Name == "Warrior")
+            if (this.GetType().Name == "Warrior")
             {
-                amt = player.Lvl * player.Strength;
+                amt = this.Lvl * this.Strength;
 
             }
             target.Hp -= amt;
-            Console.WriteLine($"{player.Name} uses {player.Weapon} on {target.Name} for {amt} damage.");
+            Console.WriteLine($"{this.Name} uses {this.Weapon} on {this.Name} for {amt} damage.");
             if (target.Hp <= 0)
             { target.Kill(); }
         }
