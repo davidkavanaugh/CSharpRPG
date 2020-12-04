@@ -30,33 +30,37 @@ namespace TerminalRPG
             {
                 Console.WriteLine($"{VillianList.Count} enemies remaining");
                 List<Villian> enemiesList = VillianList.GetAll();
+                Hero player = player1;
                 if (loops % 2 != 0)
                 {
-                    // player1 turn
-                    Console.WriteLine($"{player1.Name}, select a target");
-                    int count = 1;
-                    foreach (Villian enemy in enemiesList)
-                    {
-                        Console.WriteLine($"{count}.) {enemy.Name} -- {enemy.Hp}HP");
-                        count++;
-                    }
-                    string target = Console.ReadLine();
-                    player1.Attack(enemiesList[Int32.Parse(target) - 1]);
-                    loops++;
+                    player = player1;
                 }
                 else
                 {
+                    player = player2;
+                }
+                {
                     // player2 turn
-                    Console.WriteLine($"{player2.Name}, select a target");
+                    Console.WriteLine($"{player.Name}, select a target");
                     int count = 1;
                     foreach (Villian enemy in enemiesList)
                     {
                         Console.WriteLine($"{count}.) {enemy.Name} -- {enemy.Hp}HP");
                         count++;
                     }
-                    string target = Console.ReadLine();
-                    player2.Attack(enemiesList[Int32.Parse(target) - 1]);
-                    loops++;
+                    int target = Int32.Parse((Console.ReadLine()));
+                    try
+                    {
+                        Villian enemy = villians.GetVillianBySelectionNumber(target);
+                        Hero.Attack(player, enemy);
+                        loops++;
+
+                    }
+                    catch (System.ArgumentException)
+                    {
+                        Console.WriteLine("Target is not valid");
+                        continue;
+                    }
                 }
             }
             Console.WriteLine("Victory!");

@@ -94,5 +94,17 @@ namespace TerminalRPG
             }
             return villiansList;
         }
+        public Villian GetVillianBySelectionNumber(int num)
+        {
+            try
+            {
+                return VillianList.GetAll()[num];
+            }
+            catch (System.IndexOutOfRangeException ex)
+            {
+                System.ArgumentException argEx = new System.ArgumentException("Index is out of range", "index", ex);
+                throw argEx;
+            }
+        }
     }
 }
